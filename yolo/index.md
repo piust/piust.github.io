@@ -1,27 +1,6 @@
----
-title: YOLO - You Only Look Once
-date: 09/20/2019 
-author: Stefano Di Pietro
-body_classes: header-lite fullwidth blogstyling
-summary:
-    enabled: true
-    size: 0
-metadata:
-    'og:title': "YOLO (You Only Look Once) | IAML.it"
-    'og:image': "https://iaml.it/blog/yolo-you-only-look-once/images/v0Bqorv.jpg"
-    'og:url': "https://iaml.it/blog/yolo-you-only-look-once/"
-    'og:description': "In questo articolo viene descritto l'algoritmo YOLO per Object Detection. Ne vengono definite le caratteristiche fondamentali facendo qualche riferimento ai progressi che si sono conseguiti nella varie versioni rilasciate."
-taxonomy:
-    category: Discussions
-    tag: [object detection, yolo, robocop]
-logo: IAML_logo_viola.png
----
+# YOLO - You Only Look Once
 
 In questo articolo viene descritto l'algoritmo [YOLO](https://pjreddie.com/darknet/yolo/) per Object Detection. Ne vengono definite le caratteristiche fondamentali facendo qualche riferimento ai progressi che si sono conseguiti nella varie versioni rilasciate.
-
-<p></p>
-
-[MINITOC]
 
 ## Vivo o morto ...
 
