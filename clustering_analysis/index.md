@@ -1,27 +1,6 @@
----
-title: Introduzione alla Cluster Analysis
-date: 02/05/2019 
-author: Stefano Di Pietro
-body_classes: header-lite fullwidth blogstyling
-summary:
-    enabled: true
-    size: 0
-metadata:
-    'og:title': "Introduzione alla Cluster Analysis | IAML.it"
-    'og:image': "https://iaml.it/blog/introduzione-cluster-analysis/0OWDuTC.png"
-    'og:url': "https://iaml.it/blog/introduzione-cluster-analysis/"
-    'og:description': "In questo articolo vengono descritti i concetti di base della Cluster Analysis ed alcuni tra gli algoritmi più importanti e rappresentativi delle tecniche principali ad oggi utilizzate. Lo scopo è quello di far comprendere la finalità della suddivisione in cluster ed i meccanismi che si celano dietro la loro costruzione."
-taxonomy:
-    category: Discussions
-    tag: [clustering,analysis,kmeans]
-logo: IAML_logo_viola.png
----
+# Introduzione alla Cluster Analysis
 
 In questo articolo vengono descritti i concetti di base della **Cluster Analysis** ed alcuni tra gli algoritmi più importanti e rappresentativi delle tecniche principali ad oggi utilizzate. Lo scopo è quello di far comprendere la finalità della suddivisione in cluster ed i meccanismi che si celano dietro la loro costruzione.
-
-<p></p>
-
-[MINITOC]
 
 ## Le origini
 Quando Robert Tryon iniziò i suoi studi sulla psicologia comportamentale aveva forse sognato, come tutti i ricercatori, che almeno una delle sue teorie o idee potessero un giorno essere tramandate ai posteri. Nella fattispecie il suo studio sull’intelligenza come tratto genetico nei mammiferi ha, effettivamente, lasciato il segno nel campo della biologia, ma il suo metodo di analisi lo portò, forse involontariamente, a influenzare un ramo delle scienze matematiche oggi più che mai sulla cresta dell’onda: la statistica.
