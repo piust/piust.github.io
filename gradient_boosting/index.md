@@ -1,28 +1,7 @@
----
-title: Gradient Boosting
-date: 03/26/2019 
-author: Stefano Di Pietro
-body_classes: header-lite fullwidth blogstyling
-summary:
-    enabled: true
-    size: 0
-metadata:
-    'og:title': "Gradient Boosting | IAML.it"
-    'og:image': "https://iaml.it/blog/gradient-boosting/bsLqqgj.png"
-    'og:url': "https://iaml.it/blog/gradient-boosting/"
-    'og:description': "In questo articolo viene trattato uno storico algoritmo di ottimizzazione di tipo ensemble: il Gradient Boosting. Saranno descritte la teoria di base sulla quale questo algoritmo poggia e si cercherà di darne una descrizione quanto più possibile intuitiva attraverso un esempio pratico di regressione."
-taxonomy:
-    category: Discussions
-    tag: [gradient,boosting,ensemble]
-logo: IAML_logo_viola.png
----
+# Gradient Boosting
 
 In questo articolo viene trattato uno storico algoritmo di ottimizzazione di tipo [ensemble](https://en.wikipedia.org/wiki/Ensemble_learning): il **Gradient Boosting**.
 Saranno descritte la teoria di base sulla quale questo algoritmo poggia e si cercherà di darne una descrizione quanto più possibile intuitiva attraverso un esempio pratico di regressione.
-
-<p></p>
-
-[MINITOC]
 
 ## Cosa è il Boosting?
 
