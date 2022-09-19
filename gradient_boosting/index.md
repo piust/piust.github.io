@@ -28,42 +28,37 @@ Il Boosting è un meta-algoritmo iterativo che detta le linee guida sul come col
 
 Il concetto non è dissimile dal costruire la formula di una funzione complessa sommando tra loro un insieme di funzioni elementari. Immaginiamo di avere l'insieme di osservazioni in Figura 1 e di voler costruire una funzione (modello) che li approssimi.
 
-![](images/I7emPmM.png)
-<figcaption>
-Fig 1. Insieme casuale di osservazioni lungo un piano.
-</figcaption>
 
+| ![](images/I7emPmM.png) | 
+|:--:| 
+| *Fig 1. Insieme casuale di osservazioni lungo un piano.* |
 
 A occhio e croce le osservazioni non hanno un andamento lineare e tendono a crescere leggermente spostandosi lungo l'asse x. Facciamo un primo tentativo utilizzando una funzione che sembra avere, grossomodo, lo stesso andamento: $\log(x)$.
 
-![](images/P4SrKe6.png)
-<figcaption>
-Fig 2. Funzione logaritmica passante per punti su un piano.
-</figcaption>
+| ![](images/P4SrKe6.png) | 
+|:--:| 
+| *Fig 2. Funzione logaritmica passante per punti su un piano.* |
 
 La funzione $\log(x)$ riesce ad attraversare la nuvola composta dalle nostre osservazioni, ma passa decisamente lontana da alcune di esse. Per riuscire a migliorare il nostro modello dovremmo far sì che tenda a salire e scendere in maniera ciclica in modo da avvicinarsi a più punti. Questa caratteristica ondulatoria fa subito pensare alla funzione che è caratteristica degli andamenti oscillatori: la funzione $\sin(x)$.
 
-![](images/BCGRovV.png)
-<figcaption>
-Fig 3. Funzione seno.
-</figcaption>
-
+| ![](images/BCGRovV.png) | 
+|:--:| 
+| *Fig 3. Funzione seno.* |
 
 Come è possibile dare alla nostra funzione $\log$ le caratteristiche ondulatorie della funzione $\sin$?
 
 Se costruiamo la funzione:
 
-\begin{equation}
+$$
 \mathbf{f(x)} = \log(x) + \sin(x)
 \tag{1}
-\end{equation}
+$$
 
 questa risulterebbe avere il seguente andamento:
 
-![](images/7EUfGSi.png)
-<figcaption>
-Fig 4. Funzione composita passante per punti su un piano.
-</figcaption>
+| ![](images/7EUfGSi.png) | 
+|:--:| 
+| *Fig 4. Funzione composita passante per punti su un piano.* |
 
 Questa nuova funzione è crescente come la funzione $\log$ ma è anche ondulatoria come la funzione $\sin$. Si potrebbe affermare che la funzione $\sin$, una volta sommata alla $\log$, ne corregga l'andamento per renderla più adatta a modellare le osservazioni di partenza.
 
@@ -71,24 +66,24 @@ Essendo i Learner stessi delle funzioni matematiche è possibile operare nella s
 
 Chiamiamo $\mathbf{L_n(x)}$ la funzione corrispondente al modello costruito allo step **n**. In base a quanto detto finora la sua formula può essere scritta come:
 
-\[
+$$
 \mathbf{L_n(x)} = L_{n-1}(x) + l_n(x)
 \tag{2}
-\]
+$$
 
 dove $l_n(x)$ è un generico Weak Learner e $L_{n-1}$ è il modello costruito nell'iterazione precedente. Chiamando con $l_0$ un generico Weak Learner iniziale si può definire un modello nel modo seguente:
 
-\[
+$$
 \mathbf{L_n(x)} = l_{0}(x) + l_{1}(x) + ... +l_{n}(x)
 \tag{3}
-\]
+$$
 
 o in maniera più concisa:
 
-\[
+$$
 \mathbf{L_n(x)} = \sum_{i=0}^n l_i(x)
 \tag{4}
-\]
+$$
 
 Il Boosting, come detto, è un meta-algoritmo. In quanto tale lascia ampio margine di manovra per quanto riguarda la natura dei modelli da utilizzare. Anche se, in genere, il Boosting è implementato utilizzando dei modelli ad albero decisionale, questo non significa che non possa essere implementato basandosi su altre funzioni matematiche. Un esempio notevole di implementazione dell’algoritmo di Boosting è il Gradient Boosting, che è il protagonista del resto dell’articolo.
 
@@ -102,10 +97,9 @@ Un albero decisionale (decision tree) è un tool di supporto alle decisioni basa
 
 Usiamo come esempio un caso di studio particolarmente amato da chi studia Machine Learning: [Iris Dataset](https://it.wikipedia.org/wiki/Dataset_Iris). Questo dataset descrive una serie di fiori di genere Iris fornendo le dimensioni dei petali e dei sepali e li raggruppa in tre specie differenti. Chi di voi (come il sottoscritto la prima volta che ha avuto a che fare con questo dataset) non ha idea di cosa sia un sepalo, può scoprirlo [qui](https://it.wikipedia.org/wiki/Sepalo) e farsi bello con gli amici.
 
-![](images/n59BDR9.png)
-<figcaption>
-Fig 5. Albero decisionale
-</figcaption>
+| ![](images/n59BDR9.png) | 
+|:--:| 
+| *Fig 5. Albero decisionale* |
 
 In Figura 5 è rappresentato un esempio di albero decisionale già istruito. È possibile vedere come ogni nodo faccia riferimento a un determinato attributo del dataset e come venga diviso in due nodi figli in funzione del valore di questo. La descrizione dell'algoritmo di apprendimento di un albero di decisione esula dallo scopo di questo articolo.
 
@@ -120,10 +114,9 @@ Una volta dato in pasto questo esempio all'albero questo inizierà a muoversi da
 
 In Figura 6 è evidenziato il tragitto percorso per il nostro fiore di esempio, che ci porterà a concludere che questo fa parte della specie "Iris Setosa".
 
-![](images/bsLqqgj.png)
-<figcaption>
-Fig 6. Tragitto di predizione lungo albero decisionale.
-</figcaption>
+| ![](images/bsLqqgj.png) | 
+|:--:| 
+| *Fig 6. Tragitto di predizione lungo albero decisionale* |
 
 ## Compriamo un'auto usata
 
@@ -143,19 +136,19 @@ Per affrontare questo problema dobbiamo innanzitutto decidere quale funzione di 
 
 Per capire quale posizione iniziale è la migliore dobbiamo concentrarci sullo scopo finale del modello, ossia minimizzare il MSE:
 
-\begin{equation} 
+$$
 \mathbf{MSE} = \frac{1}{n}\sum_{i=1}^{n}(Y_i-\hat{Y}_i)^2
 \tag{5}
-\end{equation}
+$$
 
 dove $n$ è il numero di autovetture, $Y_i$ è il prezzo della i-esima autovettura, e $\hat{Y}_i$ è il prezzo che il modello ha predetto. L'argomento della sommatoria, ossia la differenza tra un valore osservato e un valore stimato, viene in genere chiamato **residuo** (residual). Dovendo noi minimizzare la funzione di costo, lo scopo dell'algoritmo sarà quello di abbassare iterativamente il valore assoluto di tutti i residui (ossia farli tendere a zero).
 
 Il valore che minimizza questa formula è, nel nostro caso, la media dei prezzi delle automobili su cui stiamo addestrando il modello, ossia:
 
-\[
+$$
 F_0 = \frac{1}{n}\sum_{i=1}^{n}x_i
 \tag{6}
-\]
+$$
 
 Quindi il nostro modello prevederà per ognuna delle vetture lo stesso valore corrispondente a 12816,7.
 
@@ -184,10 +177,9 @@ Terminata questa prima fase passiamo all'iterazione successiva, nella quale si a
 
 Da sottolineare qui una questione importante: <u>il nuovo Weak Learner non sarà una versione migliorata di quelli che lo precedono</u>. Se così fosse il nuovo learner potrebbe completamente soppiantare quelli vecchi rendendoli inutili. Invece, mentre $L_k$ ha come scopo quello di prevedere **il valore del prezzo**, $l_{k+1}$ ha l'obbiettivo di predire e aggiungere **la variazione sui valori del prezzo** calcolato da $L_k$.
 
-![](images/ok2bocN.png)
-<figcaption>
-Fig 7. Albero decisionale di regressione.
-</figcaption>
+| ![](images/ok2bocN.png) | 
+|:--:| 
+| *Fig 7. Albero decisionale di regressione* |
 
 La prima operazione che viene eseguita per la creazione di $l_1$ è quella di analizzare le feature in output (prezzo) e trovare tramite queste un valore di confine della feature *chilometri* che separi gli esempi in due gruppi. In questo esempio viene calcolato come valore di confine 156306,5.
 A questo punto il nodo principale viene diviso in due nodi figli che andranno ad accogliere i due gruppi. Visto che lo scopo dell'albero è calcolare le variazioni da apportare ai prezzi stimati, vengono presi i valori dei residui $y-L_0$ e se ne calcola la media: questi saranno i valori stimati da questo albero.
@@ -215,10 +207,10 @@ Come è stato ripetuto più volte, il modo attraverso il quale il Gradient Boost
 
 È possibile dimostrare che la derivata parziale della funzione MSE rispetto a una generica previsione $\hat{Y}_k$ è la sequente:
 
-\[
+$$
 \frac {\partial}{\partial\hat{Y}_k}\left(\frac{1}{n}\sum_{i=1}^{n}(Y_i-\hat{Y}_i)^2\right) = Y- \hat{Y}_k
 \tag{7}
-\]
+$$
 
 ossia proprio i residui che stiamo minimizzando.
 
@@ -242,10 +234,10 @@ Uno dei metodi che vengono utilizzati nel Gradient Boosting è l'**incremental s
 Questo metodo consiste nell'aggiunta di una costante moltiplicativa $\lambda$, chiamata **learning rate**, al valore di uscita dei Weak Learners.
 La formula di calcolo di $L_n$ diviene quindi:
 
-\[
+$$
 \mathbf{L_n(x)} = L_{n-1}(x) + \lambda l_n(x)
 \tag{8}
-\]
+$$
 
 dove $\lambda \in (0,1]$
 
@@ -276,5 +268,3 @@ Il Gradient Boosting è tuttora riconosciuto come un valido strumento per classi
 * [Boosting Algorithms as Gradient Descent in Function Space](https://www.maths.dur.ac.uk/~dma6kp/pdf/face_recognition/Boosting/Mason99AnyboostLong.pdf)
 * [Stocastic Gradient Boosting](https://statweb.stanford.edu/~jhf/ftp/stobst.pdf)
 
----
-Se questo articolo ti è piaciuto e vuoi tenerti aggiornato sulle nostre attività, ricordati che l'[iscrizione all'Italian Association for Machine Learning](/member) è gratuita! Puoi seguirci su [Facebook](https://www.facebook.com/machinelearningitalia/), [LinkedIn](https://www.linkedin.com/company/iaml/), e [Twitter](https://twitter.com/iaml_it).
