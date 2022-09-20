@@ -45,11 +45,13 @@ Esistono più tecniche che permettono di clusterizzare un insieme di oggetti. Un
 
 Il risultato finale, in entrambi i casi, è un insieme di cluster contenenti uno o più oggetti.
 
-![](images/DxYx43X.png)
-<figcaption>Fig 1. Clusterizzazione agglomerativa.</figcaption>
-<p></p>
-![](images/0OWDuTC.png)
-<figcaption>Fig 2. Clusterizzazione divisiva.</figcaption>
+| ![](images/DxYx43X.png) | 
+|:--:| 
+| *Fig 1. Clusterizzazione agglomerativa.* |
+
+| ![](images/0OWDuTC.png) | 
+|:--:| 
+| *Fig 2. Clusterizzazione divisiva.* |
 
 A prescindere dall’approccio utilizzato, gli algoritmi di clustering si basano tutti su una **metrica**, puramente geometrica, che permetta di identificare quanto simili siano due oggetti fra di loro.
 Infatti gli oggetti in esame vengono visti come insiemi di valori reali che ne rappresentano le caratteristiche (colore degli occhi, altezza, peso, ecc.). Questi valori, a loro volta, possono essere raggruppati in modo da formare dei [vettori](https://en.wikipedia.org/wiki/Vector_(mathematics_and_physics)#Vectors_in_Euclidean_geometry) che rappresentino punti in uno spazio euclideo.
@@ -73,8 +75,9 @@ Han: (180, 75)<br />
 Leia: (160, 50)<br />
 Chewbacca: (210, 130)<br />
 
-![](images/Zzw0X8E.png)
-<figcaption>Fig 3. Visualizzazione sul piano cartesiano di Leia, Han e Chewbacca in funzione dell’altezza e del peso.</figcaption>
+| ![](images/Zzw0X8E.png) | 
+|:--:| 
+| *Fig 3. Visualizzazione sul piano cartesiano di Leia, Han e Chewbacca in funzione dell’altezza e del peso.* |
 
 Maggiore è il numero degli attributi, maggiori saranno le dimensioni dello spazio in questione. Una volta che gli oggetti dell’insieme sono associati a punti nello spazio è possibile verificarne la "somiglianza" attraverso il concetto di **distanza**: più due punti sono vicini più saranno simili.
 
@@ -95,8 +98,9 @@ Il K-means è utilizzato in moltissimi campi, come la computer vision e la geost
 
 Un centroide è un punto nello spazio che rappresenta, sostanzialmente, un cluster e che corrisponde al punto medio dei punti del cluster stesso. Nell’esempio in Fig. 4 sono rappresentati due cluster con i rispettivi centroidi disegnati in rosso.
 
-![](images/89r68xA.png)
-<figcaption>Fig 4. Cluster con relativi centroidi evidenziati in rosso.</figcaption>
+| ![](images/89r68xA.png) | 
+|:--:| 
+| *Fig 4. Cluster con relativi centroidi evidenziati in rosso.* |
 
 Da sottolineare il fatto che, anche se a volte, come vedremo più avanti, nella fase di costruzione dei cluster la posizione di un centroide può coincidere con quella di un oggetto, in generale **il centroide non è un oggetto in essi contenuto**.
 
@@ -145,18 +149,21 @@ Questa procedura di inizializzazione ha dato risultati sorprendenti, dimostrando
 
 Nella prima delle figure in basso sono disegnati alcuni punti distribuiti in uno spazio a due dimensioni.
 
-![](images/53vIwiU.png)
-<figcaption>Fig 5. Insieme di punti nello spazio cartesiano.</figcaption>
+| ![](images/53vIwiU.png) | 
+|:--:| 
+| *Fig 5. Insieme di punti nello spazio cartesiano.* |
 
 A seguito della clusterizzazione tramite K-means i punti vengono suddivisi in cinque cluster, evidenziati in figura con colori diversi.
 
-![](images/FOdKgQm.png)
-<figcaption>Fig 6. Suddivisione in 5 cluster tramite K-means.</figcaption>
+| ![](images/FOdKgQm.png) | 
+|:--:| 
+| *Fig 6. Suddivisione in 5 cluster tramite K-means.* |
 
 Modificando i parametri dell'algoritmo possiamo avere risultati diversi, infatti se decidiamo di generare solamente due cluster invece che cinque ricaveremo la situazione rappresentata nell'immagine sottostante.
 
-![](images/IDp212l.png)
-<figcaption>Fig 7. Sudidvisione in 2 cluster tramite K-Means.</figcaption>
+| ![](images/IDp212l.png) | 
+|:--:| 
+| *Fig 7. Sudidvisione in 2 cluster tramite K-Means.* |
 
 !!! È possibile visionare il codice usato per questo esempio sul notebook [Colab](https://colab.research.google.com/drive/1GNb9tO_tt6e9ye6ALSEB_TIXos2RD8Oh) associato all'articolo.
 
@@ -182,15 +189,17 @@ A ogni iterazione vengono costruiti una serie di cluster candidati, dei quali so
 
 Per comprendere meglio lo step 1 si può fare riferimento alla Fig. 8 che rappresenta la fase in cui si sta analizzando il cluster candidato costruito attorno al punto 0.
 
-![](images/HOfI3xx.png)
-<figcaption>Fig 8. Cerchio di raggio D che rappresenta l’area di cattura dei punti per la creazione del cluster candidato attorno al punto 0.</figcaption>
+| ![](images/HOfI3xx.png) | 
+|:--:| 
+| *Fig 8. Cerchio di raggio D che rappresenta l’area di cattura dei punti per la creazione del cluster candidato attorno al punto 0.* |
 
 La parte colorata in verde rappresenta l’area del cerchio che ha il punto 0 come centro e raggio $D$.
 In questo caso entrano a far parte del cluster candidato, oltre al punto 0 stesso, anche i punti 6, 8, e 5.
 Vediamo cosa accade quando costruiamo il cluster candidato attorno al punto 4.
 
-![](images/A5Yoacp.png)
-<figcaption>Fig 9. Cerchio di raggio D che rappresenta l’area di cattura dei punti per la creazione del cluster candidato attorno al punto 4.</figcaption>
+| ![](images/A5Yoacp.png) | 
+|:--:| 
+| *Fig 9. Cerchio di raggio D che rappresenta l’area di cattura dei punti per la creazione del cluster candidato attorno al punto 4.* |
 
 In questo caso i punti inclusi nel cluster sono 4, 6 e 8. 
 Avendo solamente 3 punti, contro i 4 del caso precedente, questo cluster non sarà sicuramente il vincitore di questa iterazione.
@@ -209,8 +218,9 @@ Anche in questo caso è possibile visionare un esempio di implementazione dell'a
 
 Il clustering gerarchico è un'altra tecnica di clusterizzazione nella quale invece di costruire semplicemente un insieme di cluster, come visto fino ad ora, viene costruita una gerarchia di cluster, rappresentabile tramite un [dendrogramma](https://en.wikipedia.org/wiki/Dendrogram).
 
-![](images/FItV8Zo.png)
-<figcaption>Fig 10. Grafo a strati che rappresenta una possibile suddivisione gerarchica in cluster.</figcaption>
+| ![](images/FItV8Zo.png) | 
+|:--:| 
+| *Fig 10. Grafo a strati che rappresenta una possibile suddivisione gerarchica in cluster.* |
 
 In Fig. 10 si vede un esempio di clusterizzazione gerarchica.
 Nel primo strato in alto gli oggetti sono tutti separati: per ognuno di essi esiste un cluster che li contiene in modo esclusivo. Questa configurazione rappresenta il caso in cui le regole di somiglianza tra i punti sono così ristrette che non esistono due punti che possano essere raggruppati nello stesso cluster.
@@ -269,8 +279,9 @@ Nell’esempio nella Tab. 1 il cluster A ha una distanza di 1.4 dal cluster C.
 
 Al termine di una iterazione, le righe e le colonne corrispondenti ai cluster che si sono uniti vengono fuse tra loro e le distanza ricalcolate.
 
-![](images/jWOQn4L.png)
-<figcaption>Fig 11. Esempio di clusterizzazione di tipo agglomerativa.</figcaption>
+| ![](images/jWOQn4L.png) | 
+|:--:| 
+| *Fig 11. Esempio di clusterizzazione di tipo agglomerativa.* |
 
 Sul notebook [Colab](https://colab.research.google.com/drive/1GNb9tO_tt6e9ye6ALSEB_TIXos2RD8Oh) legato a questo articolo è possibile vedere un esempio di clusterizzazione agglomerativa con scikit-learn.
 
@@ -284,8 +295,9 @@ Altri algoritmi notevoli di clusterizzazione gerarchica agglomerativa sono:
 
 Gli algoritmi di clusterizzazione gerarchici divisivi lavorano essenzialmente in maniera inversa rispetto a quelli agglomerativi. Di conseguenza lo stato di partenza è un unico cluster contenente tutti gli oggetti dell’insieme e, ad ogni iterazione, uno dei cluster viene diviso in due e i suoi oggetti distribuiti. Facendo riferimento alla Figura 10 l’algoritmo partirebbe dallo strato F per poi salire verso l’alto. La tecniche di selezione del cluster e di ripartizione degli oggetti sono specifiche di ogni implementazione.
 
-![](images/U5aLymc.png)
-<figcaption>Fig 12. Esempio di clusterizzazione di tipo divisiva.</figcaption>
+| ![](images/U5aLymc.png) | 
+|:--:| 
+| *Fig 12. Esempio di clusterizzazione di tipo divisiva.* |
 
 ## Conclusioni
 
