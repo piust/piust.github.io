@@ -107,9 +107,9 @@ Da sottolineare il fatto che, anche se a volte, come vedremo più avanti, nella 
 **ALGORITMO K-MEANS (PSEUDOCODICE)**
 
 **Input:**<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$N$ oggetti caratterizzati da vettori di dimensione $d$<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $N$ oggetti caratterizzati da vettori di dimensione $d$<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Un intero $C$ che rappresenta il numero di cluster desiderati<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$C$ vettori di dimensione d che rappresentano i centroidi rappresentativi dei cluster iniziali.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $C$ vettori di dimensione d che rappresentano i centroidi rappresentativi dei cluster iniziali.<br />
 
 **Repeat:**<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 1 (**Assignment**):<br />
