@@ -76,10 +76,9 @@ $c_3$ = probabilità che l’oggetto appartenga alla classe 3 <br />
 
 Una volta restituito questo vettore l’interfaccia visiva di Murphy sarebbe in grado di disegnare un box contenente l'oggetto come mostrato in figura Fig. 1:
 
-![](images/D5PFb7z.jpg)
-<figcaption>
-Figura 1. Box contenente il bersaglio "penna".
-</figcaption>
+| ![](images/D5PFb7z.jpg) | 
+|:--:| 
+| *Figura 1. Box contenente il bersaglio "penna".* |
 
 Ovviamente per addestrare una rete neurale a riconoscere e  localizzare un oggetto in questa maniera sarebbe necessario avere un training set di immagini con dei box già conosciuti.
 Se volessimo partire invece da un training set di immagini contenenti un solo elemento importante (una penna, un telefono, un paio di occhiali o un bicchiere), molto più semplici da reperire, dovremmo trovare una via alternativa per localizzare gli oggetti in questione su una immagine di input.
@@ -91,19 +90,17 @@ Questa metodologia è nota come **Sliding Window**.
 
 Con questo nome è indicato un metodo di sintesi dell’immagine dalla quale vengono ritagliate porzioni più piccole.
 
-![](images/710uUZB.gif)
-<figcaption>
-Figura 2. Scansione dell'immagine con sliding window alla ricerca della penna
-</figcaption>
+| ![](images/710uUZB.gif) | 
+|:--:| 
+| *Figura 2. Scansione dell'immagine con sliding window alla ricerca della penna* |
 
 Nell’immagine Fig. 2 si può vedere una finestra rettangolare che scorre lungo l’immagine da sinistra a destra e dall’alto in basso, selezionando, di volta in volta, una diversa porzione dell’immagine originale.
 Sostanzialmente, quello che viene fatto è una scansione lineare dell’immagine alla ricerca di oggetti conosciuti. Se all’interno di una finestra viene riconosciuto un oggetto, allora non solo potremmo dire che quell’oggetto è presente nell’immagine, ma anche indicarne la posizione.
 Nell’immagine in Fig. 3 è rappresentato un esempio di Rete Neurale Convolutiva per Object Classification che andrebbe ad analizzare ogni singola finestra:
 
-![](images/48UiQO6.png)
-<figcaption>
-Figura 3. Rete neurale convolutiva per object classification
-</figcaption>
+| ![](images/48UiQO6.png) | 
+|:--:| 
+| *Figura 3. Rete neurale convolutiva per object classification* |
 
 Il layer di output contiene 4 neuroni di uscita, uno per ognuna delle quattro classi riconosciute: penna, telefono, occhiali e bicchiere.
 
@@ -124,22 +121,18 @@ Questa soluzione è, in realtà, insita nella natura stessa delle Reti Convoluti
 Lungi dal voler illustrare il meccanismo sul quale queste reti si basano ci limiteremo a ricordare che l’idea di base è quella di un filtro che scorre lungo l’immagine in maniera affatto dissimile da quella di una sliding window.
 Ma per far si che questi due algoritmi si comportino davvero allo stesso modo dovremo apportare la seguente modifica alla rete descritta in Fig 3: dare una spintarella agli ultimi due layer e farli cadere a terra. Il risultato è mostrato in figura Fig. 4.
 
-![](images/nia2p9h.png)
-<figcaption>
-Figura 4. Rete neurale convolutiva con layer di output 1x1x4.
-</figcaption>
+| ![](images/nia2p9h.png) | 
+|:--:| 
+| *Figura 4. Rete neurale convolutiva con layer di output 1x1x4.* |
 
 Sostanzialmente abbiamo trasformato i layer fully connected in layer convolutivi. Inoltre questa rete può ancora essere utilizzata per effettuare Image Classification, in quanto continua a restituire 4 valori, uno per ogni signola classe.
 
 Si potrebbe pensare a questo come ad un piccolo e alquanto futile esercizio di stile fin quando non proviamo a dare in pasto alla rete un’immagine di dimensioni maggiori di quelle usate per l’addestramento, ad esempio 16x16.
 Ovviamente il risultato finale avrà dimensioni leggermente differenti da quelli prodotti in fase di training: 2x2x4
 
-
-![](images/JHe6Qlz.gif)
-<figcaption>
-Figura 5. Trasporto delle informazioni tramite i layer di una rete convolutiva.
-</figcaption>
-
+| ![](images/JHe6Qlz.gif) | 
+|:--:| 
+| *Figura 5. Trasporto delle informazioni tramite i layer di una rete convolutiva.* |
 
 E qui la magia viene incontro all'agente Murphy.
 Sostanzialmente i valori dei canali di ogni singolo elemento del volume di output possono essere interpretati come dei vettori 4x1 come quelli prodotti in Fig 4 e ognuno di questi corrisponde al risultato che avrebbe dato una sliding window di dimensioni 14x14.
@@ -147,22 +140,18 @@ Sostanzialmente i valori dei canali di ogni singolo elemento del volume di outpu
 In figura in Fig. 5 è possibile vedere come le informazioni dell'area evidenziata in blu dell'immagine di input vengano processate dalla rete fino al popolamento del layer di output. 
 Quindi utilizzando una sola rete neurale siamo riusciti ad avere i risultati che si sarebbero ottenuti con quattro reti del tipo  descritto in Fig. 3 applicati a quattro posizioni diverse di una sliding window.
 
-![](images/5UblAzt.png)
-<figcaption>
-Figura 6. Interpretazione dei valori nel layer di output.
-</figcaption>
-
+| ![](images/5UblAzt.png) | 
+|:--:| 
+| *Figura 6. Interpretazione dei valori nel layer di output.* |
 
 Ingrandendo il layer finale in figura Fig. 6 sono stati evidenziati in giallo gli elementi che corrispondono all'output della predizione sulla finestra convolutiva in alto a sinistra dell'immagine di input e che rappresentano la probabilità di appartenenza dell'immagine ad una delle quattro classi conosciute.
 
 Ora l’agente Murphy è in grado di identificare più rapidamente un oggetto ma la cattura delle Bounding Box continua a risultare poco accurata in quanto vincolata dalla forma (in questo esempio quadrata) e dalla dimensione delle finestre "convolutive".
 Nel caso degli occhiali, infatti, la regione da questi occupata non è quadrata, ma più che altro rettangolare come mostrato in Fig 7.
 
-![](images/ou3n6MT.png)
-<figcaption>
-Figura 7. Bounding Box legata all'oggetto "occhiali".
-</figcaption>
-
+| ![](images/ou3n6MT.png) | 
+|:--:| 
+| *Figura 7. Bounding Box legata all'oggetto "occhiali".* |
 
 ## You Only Look Once
 
@@ -175,10 +164,9 @@ Questo algoritmo, ideato inizialmente nel 2016 ha subito qualche modifica fino a
 
 Per riuscire a trovare la penna utilizzando lo YOLO il nostro Murphy dovrà inizialmente effettuare una suddivisione dell’immagine da esaminare in una griglia (una vera questa volta), che a scopo illustrativo sarà 3x3, ma che in generale può avere una dimensione qualunque.
 
-![](images/rHZ8cA9.jpg)
-<figcaption>
-Figura 8. Griglia YOLO 3x3.
-</figcaption>
+| ![](images/rHZ8cA9.jpg) | 
+|:--:| 
+| *Figura 8. Griglia YOLO 3x3.* |
 
 A questo punto l’immagine verrà esaminata attraverso una Rete Convolutiva con l’ausilio delle sliding window "convolutive" considerando ogni singola cella come una finestra.
 
@@ -186,12 +174,9 @@ Nell'esempio in Fig. 5 la rete aveva lo scopo di effettuare Image Classification
 
 In figura è visualizzato un esempio di cosa l’agente Murphy vedrebbe a seguito della richiesta di “bersaglio”.
 
-![](images/SCS69J6.jpg)
-<figcaption>
-Figura 9. Griglia YOLO 6x6 con oggetti identificati e relativi Bounding Box.
-</figcaption>
-
-
+| ![](images/SCS69J6.jpg) | 
+|:--:| 
+| *Figura 9. Griglia YOLO 6x6 con oggetti identificati e relativi Bounding Box.* |
 
 In figura Fig. 9 vediamo che Murphy è stato in grado di riconoscere la penna nel box 5, come era già stato in grado di fare, ma anche di riconoscere gli occhiali nel box 6.
 Ad ogni immagine viene associato un Bounding Box ed un punto centrale. La posizione del punto centrale determina il box al quale l'oggetto viene associato.
@@ -200,29 +185,23 @@ Nella cella 6 è possibile vedere che la Bounding Box associata agli occhiali no
 I valori inseriti nel vettore in (1) sono relativi alla cella ma ne parleremo nel dettaglio più avanti.
 Una rete che si trova ad analizzare l'immagine restituirà un volume di output come quello in Fig. 10 dove viene evidenziato il box al quale un determinato vettore fa riferimento.
 
-![](images/MkYFQqx.png)
-<figcaption>
-Figura 10. Esempio di volume di output della rete YOLO.
-</figcaption>
-
+| ![](images/MkYFQqx.png) | 
+|:--:| 
+| *Figura 10. Esempio di volume di output della rete YOLO.* |
 
 Un notevole risultato per un cyborg degli anni '80, ma ora siamo nel 21° secolo! Possibile che non siamo riusciti a creare nulla di meglio?
 Immaginiamo che l’agente Murphy si ritrovi davanti la scena seguente:
 
-![](images/7UFAIsc.jpg)
-<figcaption>
-Figura 11. Minaccioso ED-209.
-</figcaption>
-
+| ![](images/7UFAIsc.jpg) | 
+|:--:| 
+| *Figura 11. Minaccioso ED-209.* |
 
 La nemesi di Robocop, [ED-209](https://it.wikipedia.org/wiki/ED209), lo fronteggia minaccioso. Robocop dovrà decidere quale azioni intraprendere: attaccare o fuggire.
 Immaginiamo che Murphy utilizzi un algoritmo di Object Detection come quello descritto finora. Probabilmente il risultato sarebbe qualcosa del genere:
 
-
-![](images/YkqVoq1.jpg)
-<figcaption>
-Figura 12. ED-209 localizzato nel box centrale
-</figcaption>
+| ![](images/YkqVoq1.jpg) | 
+|:--:| 
+| *Figura 12. ED-209 localizzato nel box centrale* |
 
 Nel box centrale viene riconosciuto ED-209, di conseguenza Robocop inizierebbe a sparare come non ci fosse un domani!
 
@@ -236,10 +215,9 @@ Introdotti in YOLO v2 gli Anchor Box hanno permesso di poter riconoscere più og
 Una Anchor Box corrisponde ad una particolare forma (shape) nella quale far rientrare un oggetto riconosciuto (o meglio la sua Bounding Box).
 Supponiamo a scopo illustrativo di prendere in considerazione gli Anchor Box definiti di seguito.
 
-![](images/kapPsYs.png)
-<figcaption>
-Figura 13. Anchor Box
-</figcaption>
+| ![](images/kapPsYs.png) | 
+|:--:| 
+| *Figura 13. Anchor Box* |
 
 Quando il nostro algoritmo si concentrerà su una cella potrebbe essere in grado di identificare due oggetti se questi possono essere inseriti ognuno in una differente Anchor Box.
 Ovviamente per poter dare due differenti risultati, l’algoritmo dovrà restituire una array come quello seguente:
@@ -270,11 +248,9 @@ Ovviamente per poter dare due differenti risultati, l’algoritmo dovrà restitu
 Dove l'elemento $x^a$ farà riferimento all’Anchor Box $a$.
 Grazie a questa potente introduzione ora Murphy avrà la possibilità di riconoscere entrambi gli oggetti legati al box centrale, come mostrato in figura 14, dove ED-209 viene asociato all'Anchor Box 1 mentra il scuolabus all'Anchor Box 2.
 
-![](images/v0Bqorv.jpg)
-<figcaption>
-Figura 14. ED-209 e lo scuolabus localizzati nel box centrale dell'immagine.
-</figcaption>
-
+| ![](images/v0Bqorv.jpg) | 
+|:--:| 
+| *Figura 14. ED-209 e lo scuolabus localizzati nel box centrale dell'immagine.* |
 
 Ovviamente questa separazione dovrà essere presente anche nel training set quindi, per costruirlo in maniera idonea, dovremo di volta in volta identificare l'Anchor Box migliore tra quelle che possono includere l'oggetto.
 A questo scopo dovremmo introdurre un nuovo concetto, chiamato Intersection over Union (IoU).
@@ -316,11 +292,9 @@ Il motivo per il quale non viene utilizzata la distanza euclidea è che, sperime
 Il vettore (1) contiene i dettagli relativi alla posizione dell'oggetto e alla dimensione della Bounding Box che lo contiene.
 Questi valori sono calcolati relativamente alla cella nella quale l'oggetto è stato trovato e sono ricavati in maniera non banale, come illustrato in figura Fig. 15.
 
-![](images/na4UJkI.png)
-<figcaption>
-Figura 15. Visualizzazione delle coordinate e della dimensione come conosciuta dall'algoritmo YOLO.
-</figcaption>
-
+| ![](images/na4UJkI.png) | 
+|:--:| 
+| *Figura 15. Visualizzazione delle coordinate e della dimensione come conosciuta dall'algoritmo YOLO.* |
 
 Dove $t_x$, $t_y$, $t_w$ e $t_h$ sono i valori predetti dalla rete. Il rettangolo tratteggiato è la anchor box di riferimento mentre quello blu e la Bounding Box predetta.
 $\sigma(t_n)$ sta ad indicare la [funzione logistica](https://it.wikipedia.org/wiki/Equazione_logistica) che limita il valore delle coordinate tra 0 e 1.
