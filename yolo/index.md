@@ -47,7 +47,7 @@ Immaginiamo che l’agente Murphy sia stato addestrato a riconoscere solamente u
 Quali sono i dati che Murphy dovrebbe restituire all’algoritmo della sua interfaccia visiva affinché possa identificare e localizzare la penna?
 Negli algoritmi di Object Detection le reti neurali vengono spesso istruite per restituire un vettore del tipo:
 
-\begin{equation} 
+$$
 \begin{bmatrix}
     p_c \\
     b_x \\
@@ -59,7 +59,7 @@ Negli algoritmi di Object Detection le reti neurali vengono spesso istruite per 
     c_3
 \end{bmatrix}
 \tag{1}
-\end{equation}
+$$
 
 
 
@@ -222,7 +222,7 @@ Supponiamo a scopo illustrativo di prendere in considerazione gli Anchor Box def
 Quando il nostro algoritmo si concentrerà su una cella potrebbe essere in grado di identificare due oggetti se questi possono essere inseriti ognuno in una differente Anchor Box.
 Ovviamente per poter dare due differenti risultati, l’algoritmo dovrà restituire una array come quello seguente:
 
-\begin{equation} 
+$$
 \begin{bmatrix}
     p^1_c \\
     b^1_x \\
@@ -242,7 +242,7 @@ Ovviamente per poter dare due differenti risultati, l’algoritmo dovrà restitu
     c^2_3
 \end{bmatrix}
 \tag{2}
-\end{equation}
+$$
 
 
 Dove l'elemento $x^a$ farà riferimento all’Anchor Box $a$.
@@ -261,10 +261,10 @@ Immaginiamo di avere una immagine come quella in fig 11, di avere a disposizione
 Entrambi i box sono idonei a contenere l'immagine, ma dovendone scegliere uno abbiamo bisogno di un meccanismo automatico che ci permetta di selezionare il migliore.
 La IoU tra due aree, A e B, corrisponde al valore restituito dalla seguente formula:
 
-\begin{equation} 
+$$
 IoU(A,B) = \frac{A \cap B}{A \cup B}
 \tag{4}
-\end{equation}
+$$
 
 Questo valore oscilla tra 0 e 1, dove 1 corrisponde ad una sovrapposizione perfetta tra le aree (quando l'unione e l'intersezione hanno lo stesso valore le due aree coincidono).
 
@@ -278,7 +278,7 @@ Si potrebbe pensare di prendere una serie di aree che riescano, grosso modo, a c
 L'idea che invece hanno avuto gli ideatori di YOLO è stata quella di estrapolare le anchor box direttamente dal training set tramite clusterizzazione delle Bounding Box.
 Nello specifico è stato utilizzato un K-means con diversi valori di k e la seguente metrica di distanza:
 
-$d(box, centroid) = 1 - IoU(box, centroid)$
+$$d(box, centroid) = 1 - IoU(box, centroid)$$
 
 Il motivo per il quale non viene utilizzata la distanza euclidea è che, sperimentalmente, questa portava i box più grandi a generare più errori di quelli piccoli.
 
@@ -304,10 +304,10 @@ $\sigma(t_n)$ sta ad indicare la [funzione logistica](https://it.wikipedia.org/w
 
 I primi valori del vettore (2) associati ad ogni Anchor Box, che stanno ad indicare la probabilità della presenza o meno di un oggetto all'interno della Anchor Box, vengono calcolato nel modo seguente:
 
-\begin{equation} 
+$$
 Pr(object) * IoU (b, object) = \sigma(p_c)
 \tag{3}
-\end{equation}
+$$
 
 Dove la probabilità di aver trovato un oggetto viene moltiplicata con il valore della IoU tra il Bounding Box reale e quella predetto dalla rete.
 In questo modo la probabilità della presenza dell'oggetto viene pesata, in qualche modo, tramite la sovrapposizione dei due box, in modo da dare meno peso ai casi nei quali l'oggetto, pur avendo una buona probablità di essere presente nell'immagine, ha una Bounding Box troppo dissimile da quella reale.
@@ -339,5 +339,3 @@ the harm our work might be doing and think of ways to mitigate it. We owe the wo
 * [YOLOv3: An Incremental Improvement](https://arxiv.org/abs/1804.02767)
 * [YOLOv3: Darknet implementation](https://pjreddie.com/darknet/yolo/)
 
----
-Se questo articolo ti è piaciuto e vuoi tenerti aggiornato sulle nostre attività, ricordati che l'[iscrizione all'Italian Association for Machine Learning](/member) è gratuita! Puoi seguirci su [Facebook](https://www.facebook.com/machinelearningitalia/), [LinkedIn](https://www.linkedin.com/company/iaml/), e [Twitter](https://twitter.com/iaml_it).
