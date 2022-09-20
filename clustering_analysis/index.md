@@ -303,6 +303,3 @@ Gli algoritmi di clusterizzazione gerarchici divisivi lavorano essenzialmente in
 
 Esistono molte altre tecniche di clusterizzazione che non sono state toccate in questo articolo, nel quale ho cercato di dare una panoramica sugli algoritmi principali e sulle idee sulle quali si basano.
 In un periodo nel quale gli algoritmi di machine learning supervisionato sono alla ribalta è importante ricordare che esistono molti altri strumenti ancora validi e fondamentali che sono di supporto all'analisi dei dati.
-
----
-Se questo articolo ti è piaciuto e vuoi tenerti aggiornato sulle nostre attività, ricordati che l'[iscrizione all'Italian Association for Machine Learning](/member) è gratuita! Puoi seguirci su [Facebook](https://www.facebook.com/machinelearningitalia/), [LinkedIn](https://www.linkedin.com/company/iaml/), e [Twitter](https://twitter.com/iaml_it).
