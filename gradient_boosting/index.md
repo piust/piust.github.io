@@ -146,14 +146,14 @@ dove $n$ è il numero di autovetture, $Y_i$ è il prezzo della i-esima autovettu
 Il valore che minimizza questa formula è, nel nostro caso, la media dei prezzi delle automobili su cui stiamo addestrando il modello, ossia:
 
 $$
-F_0 = \frac{1}{n}\sum_{i=1}^{n}x_i
+L_0 = \frac{1}{n}\sum_{i=1}^{n}x_i
 \tag{6}
 $$
 
 Quindi il nostro modello prevederà per ognuna delle vetture lo stesso valore corrispondente a 12816,7.
 
 
-| ID | Chilometri  | Prezzo (Y)  | $F_0$   |
+| ID | Chilometri  | Prezzo (Y)  | $L_0$   |
 |--- |-------------|-------------|---------|
 | 1  | 112900      | 14200       | 12816.7 |
 | 2  | 122182      | 15000       | 12816.7 |
@@ -173,7 +173,7 @@ A questo punto si calcolerà quanto queste "previsioni" siano distanti dal valor
 | 5  | 190522      | 9000        | 12816.7 | -3816.7            |
 | 6  | 125452      | 15600       | 12816.7 |  2783.3            |
 
-Terminata questa prima fase passiamo all'iterazione successiva, nella quale si aggiungerà un Weak Learner ($l_1$) che verrà istruito a prevedere la variazione del valore precedentemente previsto, affinché questo si avvicini al valore desiderato.
+Terminata questa prima fase passiamo all'iterazione successiva, nella quale si aggiungerà un Weak Learner ( $l_1$ ) che verrà istruito a prevedere la variazione del valore precedentemente previsto, affinché questo si avvicini al valore desiderato.
 
 Da sottolineare qui una questione importante: <u>il nuovo Weak Learner non sarà una versione migliorata di quelli che lo precedono</u>. Se così fosse il nuovo learner potrebbe completamente soppiantare quelli vecchi rendendoli inutili. Invece, mentre $L_k$ ha come scopo quello di prevedere **il valore del prezzo**, $l_{k+1}$ ha l'obbiettivo di predire e aggiungere **la variazione sui valori del prezzo** calcolato da $L_k$.
 
