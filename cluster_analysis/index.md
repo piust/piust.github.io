@@ -1,5 +1,6 @@
 # Introduzione alla Cluster Analysis
 
+
 In questo articolo vengono descritti i concetti di base della **Cluster Analysis** ed alcuni tra gli algoritmi più importanti e rappresentativi delle tecniche principali ad oggi utilizzate. Lo scopo è quello di far comprendere la finalità della suddivisione in cluster ed i meccanismi che si celano dietro la loro costruzione.
 
 ## Le origini
